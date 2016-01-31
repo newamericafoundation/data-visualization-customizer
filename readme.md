@@ -1,0 +1,3 @@
+A simple client-side React app that renders an interface used to specify how the contents of an uploaded CSV file should be visualized. CSV upload in, JSON with customization variables out.
+
+The exercise is intended to take this customization logic out of the CMS that manages the upload. The JSON options supplied by this app can be sent back to the back-end for storage, but the back-end doesn't have to know about its inner workings at all. Since the visualizations are rendered on the client using JavaScript, the logic behind this app's forms and the rendering code itself may be shared.
