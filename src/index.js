@@ -3,8 +3,12 @@ console.log('Hi, Mom!')
 import React from 'react'
 import { render } from 'react-dom'
 import $ from 'jquery'
+import injectTapEventPlugin from 'react-tap-event-plugin'
 
+import './style.css'
 import Root from './components/root.jsx'
+
+injectTapEventPlugin()
 
 function csvToJson(csv) {
 	var allRows = csv.split('\n').map(row => row.split(','))

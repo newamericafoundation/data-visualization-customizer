@@ -5,7 +5,7 @@ export default function Summary(props) {
 	return (
 		<div>
 			<h1>CSV uploaded successfully!</h1>
-			<p>{ `We have ${props.itemNames.length} items and ${props.variableNames.length} variables.` }</p>
+			<p>{ `We have ${props.itemNames.length} items and ${props.variables.length} variables.` }</p>
 		</div>
 	)
 

@@ -26,6 +26,12 @@ module.exports = {
 				query: {
 					presets: [ 'es2015', 'react' ]
 				}
+			},
+
+			{
+				test: /\.css$/,
+				loaders: [ 'style', 'css' ],
+				exclude: /(node_modules|bower_components)/
 			}
 
 		]
