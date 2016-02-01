@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Dialog, RaisedButton } from 'material-ui'
+import { Dialog, RaisedButton, Tabs, Tab } from 'material-ui'
 
 import Summary from './summary.jsx'
-import MainVariableSelectForm from './main_variable_select_form.jsx'
-import SummaryTableVariablesSelectForm from './summary_table_variables_select_form.jsx'
+import MainVariablePicker from './main_variable_picker.jsx'
+import SummaryTableVariablesPicker from './summary_table_variables_picker.jsx'
+import VariableGroupInput from './variable_group_input.jsx'
 
 
 export default class Root extends React.Component {
@@ -16,7 +17,8 @@ export default class Root extends React.Component {
 		this.state = {
 			status: 'editing',
 			mainVariable: this.getVariables()[0],
-			summaryTableVariables: []
+			summaryTableVariables: [],
+			variableGroups: [ 'variable-group-1', 'variable-group-2' ]
 		}
 	}
 
@@ -33,21 +35,35 @@ export default class Root extends React.Component {
 		var variables = this.getVariables()
 		return (
 			<div>
-				<Summary 
-					itemNames={this.getItemNames()} 
-					variables={variables} 
-				/>
-				<MainVariableSelectForm 
-					mainVariable={this.state.mainVariable}
-					setParentState={this.setState}
-					variables={variables} 
-				/>
-				<SummaryTableVariablesSelectForm
-					summaryTableVariables={this.state.summaryTableVariables}
-					setParentState={this.setState}
-					variables={variables}
-				/>
-				<RaisedButton label='Primary' onClick={this.handleSubmit} />
+				<Tabs>
+					<Tab label='Summary'>
+						<Summary 
+							itemNames={this.getItemNames()} 
+							variables={variables} 
+						/>
+					</Tab>
+					<Tab label='Main Variable'>
+						<MainVariablePicker
+							mainVariable={this.state.mainVariable}
+							setParentState={this.setState}
+							variables={variables} 
+						/>
+					</Tab>
+					<Tab label='Summary Table Variables'>
+					<SummaryTableVariablesPicker
+						summaryTableVariables={this.state.summaryTableVariables}
+						setParentState={this.setState}
+						variables={variables}
+					/>
+					</Tab>
+					<Tab label='Variable Groups'>
+						<VariableGroupInput
+							variableGroups={this.state.variableGroups}
+							setParentState={this.setState}
+						/>
+					</Tab>
+				</Tabs>
+				<RaisedButton label='Done!' primary={true} onClick={this.handleSubmit} />
 			</div>
 		)
 	}
@@ -56,8 +72,8 @@ export default class Root extends React.Component {
 		return (
 			<div>
 				<h1>All set!</h1>
-				<p>Now, just ship the following to the database:</p>
-				<code>{ JSON.stringify(this.state) }</code>
+				<p>Now, just ship the following JSON to the database, or, as an intermediate solution, copy and paste it to an input field within your CMS:</p>
+				<code>{ JSON.stringify(this.state, null, 4) }</code>
 			</div>
 		)
 	}
