@@ -8,8 +8,8 @@ module.exports = {
 	output: {
 		path: path.resolve('./'),
 		publicPath: 'http://localhost:8000/',
-		filename: 'index.js',
-		sourceMapFilename: 'index.js.map'
+		filename: 'data-visualization-customizer.js',
+		sourceMapFilename: 'data-visualization-customizer.js.map'
 	},
 
 	resolve: {

@@ -149,7 +149,7 @@ class App extends React.Component {
 	}
 
 	handleSubmit() {
-		this.setState({ status: 'success' })
+		this.props.endApp(this.state)
 	}
 
 }

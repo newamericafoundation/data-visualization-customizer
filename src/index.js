@@ -1,7 +1,7 @@
 import './style.css'
 
 import React from 'react'
-import { render } from 'react-dom'
+import { render, unmountComponentAtNode } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import $ from 'jquery'
@@ -15,13 +15,26 @@ import appReducer from './reducers/index.js'
 
 injectTapEventPlugin()
 
-function start() {
+function addCustomizerOnUpload(options) {
 
-	console.log('Hi, Mom!')
+	var { fileInputSelector, optionsInputSelector, appContainerSelector } = options
 
-	var container = document.getElementById('app')
+	var $fileInput = $(fileInputSelector)
+	var $optionsInput = $(optionsInputSelector)
+	var $appContainer = $(appContainerSelector)
 
-	$('#file').on('change', (e) => {
+	function startApp(store) {
+		console.log('Hi, Mom!')
+		$optionsInput.attr('disabled', true)
+		render(<Provider store={store}><App endApp={endApp} /></Provider>, $appContainer[0])
+	}
+
+	function endApp(options) {
+		$optionsInput.attr('value', JSON.stringify(options))
+		unmountComponentAtNode($appContainer[0])
+	}
+
+	$(fileInputSelector).on('change', (e) => {
 		var file = e.currentTarget.files[0]
 		readFileAsText(file, (text) => {
 			var json = csvToJson(text)
@@ -30,15 +43,16 @@ function start() {
 				options: {}
 			}
 			var store = createStore(appReducer, initialState)
-			try {
-				render(<Provider store={store}><App /></Provider>, container)
-			} catch(e) {
-				console.log(e.stack)
-				console.log('There was an error rendering the form component.')
-			}
+			startApp(store)
 		})
 	})
 
 }
 
-$(start)
+$(() => {
+	addCustomizerOnUpload({
+		fileInputSelector: '#body-0-value-data_file', 
+		optionsInputSelector: '#body-1-value-variable_option',
+		appContainerSelector: '#data-visualization-customizer-app'
+	})
+})
