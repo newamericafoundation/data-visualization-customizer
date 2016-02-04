@@ -1,13 +1,16 @@
 import React from 'react'
+import { PropTypes } from 'react'
 import { SelectField, MenuItem } from 'material-ui'
 
-export default function StatelessSelect(props) {
+function StatelessSelect(props) {
+
+	var { values, selectedValue } = props
 
 	function handleChange(event, index, value) {
 		props.sendUpdateToParent(value) 
 	}
 
-	var list = props.values.map((value, i) => {
+	var list = values.map((value, i) => {
 		return (
 			<MenuItem 
 				key={i} 
@@ -19,10 +22,16 @@ export default function StatelessSelect(props) {
 
 	return (
 		<div>
-			<SelectField value={ props.selectedValue } onChange={handleChange} >
+			<SelectField value={ selectedValue } onChange={handleChange} >
 				{ list }
 			</SelectField>
 		</div>
 	)
 
 }
+
+StatelessSelect.propTypes = {
+	values: PropTypes.array.isRequired
+}
+
+export default StatelessSelect

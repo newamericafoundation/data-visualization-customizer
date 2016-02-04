@@ -1,40 +1,41 @@
-console.log('Hi, Mom!')
+import './style.css'
 
 import React from 'react'
 import { render } from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import $ from 'jquery'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
-import './style.css'
-import Root from './components/root.jsx'
+import csvToJson from './helpers/csv_to_json.js'
+import readFileAsText from './helpers/read_file_as_text.js'
+
+import App from './components/app.jsx'
+import appReducer from './reducers/index.js'
 
 injectTapEventPlugin()
 
-function csvToJson(csv) {
-	var allRows = csv.split('\n').map(row => row.split(','))
-	var headerRow = allRows.slice(0, 1)[0]
-	var contentRows = allRows.slice(1)
-	return contentRows.map((row, i) => {
-		var obj = {}
-		row.forEach((item, j) => { obj[headerRow[j]] = item })
-		return obj
-	})
-}
-
-function readFileAsText(file, next) {
-	var reader = new FileReader()
-	reader.onload = function() { return next(reader.result) }
-	reader.readAsText(file)
-}
-
 function start() {
+
+	console.log('Hi, Mom!')
 
 	var container = document.getElementById('app')
 
-	$('#file').on('change', (e) => { 
+	$('#file').on('change', (e) => {
 		var file = e.currentTarget.files[0]
 		readFileAsText(file, (text) => {
-			render(<Root data={csvToJson(text)} />, container)
+			var json = csvToJson(text)
+			var initialState = {
+				data: json,
+				options: {}
+			}
+			var store = createStore(appReducer, initialState)
+			try {
+				render(<Provider store={store}><App /></Provider>, container)
+			} catch(e) {
+				console.log(e.stack)
+				console.log('There was an error rendering the form component.')
+			}
 		})
 	})
 

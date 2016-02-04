@@ -1,6 +1,7 @@
 import React from 'react'
+import { PropTypes } from 'react'
 
-export default function Summary(props) {
+function Summary(props) {
 
 	return (
 		<div>
@@ -11,3 +12,10 @@ export default function Summary(props) {
 	)
 
 }
+
+Summary.propTypes = {
+	itemNames: PropTypes.array.isRequired,
+	variables: PropTypes.array.isRequired
+}
+
+export default Summary

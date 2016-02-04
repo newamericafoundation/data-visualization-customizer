@@ -1,6 +1,6 @@
 import React from 'react'
 
-import StatelessListCreator from './form_base/stateless_list_creator.jsx'
+import StatelessListCreator from './base_form_elements/stateless_list_creator.jsx'
 
 export default function VariableGroupInput(props) {
 

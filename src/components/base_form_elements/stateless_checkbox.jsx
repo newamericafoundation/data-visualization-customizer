@@ -1,7 +1,8 @@
 import React from 'react'
+import { PropTypes } from 'react'
 import { MenuItem, Checkbox } from 'material-ui'
 
-export default function StatelessCheckbox(props) {
+function StatelessCheckbox(props) {
 
 	var { values, selectedValues } = props
 
@@ -37,3 +38,10 @@ export default function StatelessCheckbox(props) {
 	)
 
 }
+
+StatelessCheckbox.propTypes = {
+	values: PropTypes.array.isRequired,
+	selectedValues: PropTypes.array.isRequired
+}
+
+export default StatelessCheckbox
