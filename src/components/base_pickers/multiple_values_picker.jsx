@@ -7,7 +7,7 @@ export default function MultipleValuesPicker(props) {
 	var { values, selectedValues } = props
 
 	function setParentState(nextValues) {
-		props.setParentStateByKey(props.valuesKey, nextValues)
+		props.setOptionByKey(props.valuesKey, nextValues)
 	}
 
 	return (

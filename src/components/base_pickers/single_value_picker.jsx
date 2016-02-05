@@ -6,7 +6,7 @@ import StatelessSelect from './../base_form_elements/stateless_select.jsx'
 export default function SingleValuePicker(props) {
 
 	function sendUpdateToParent(nextSelectedValue) {
-		props.setParentStateByKey(props.valueKey, nextSelectedValue) 
+		props.setOptionByKey(props.valueKey, nextSelectedValue) 
 	}
 
 	return (

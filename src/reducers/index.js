@@ -1,5 +1,9 @@
-export default function appReducer(state = {}, action) {
+import { combineReducers } from 'redux'
 
-	return state
+import dataReducer from './data_reducer.js'
+import optionsReducer from './options_reducer.js'
 
-}
+export default combineReducers({
+	data: dataReducer,
+	options: optionsReducer
+})

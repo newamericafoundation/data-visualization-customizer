@@ -16,11 +16,9 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props)
-		this.setState = this.setState.bind(this)
 		this.setStateByKey = this.setStateByKey.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.state = {
-			status: 'editing',
+		var initialOptions = {
 			filterVariables: [],
 			sideBarVariables: [],
 			mainVariable: this.getVariables()[0],
@@ -31,18 +29,20 @@ class App extends React.Component {
 			mapType: options.mapTypes[0],
 			colorScale: options.colorScales[0]
 		}
+		this.props.dispatch({ type: 'SET_OPTIONS', payload: initialOptions })
 	}
 
 	render() {
 		return (
 			<Dialog autoScrollBodyContent={true} open={true}>
-				{ (this.state.status === 'editing') ? this.renderForm() : this.renderSubmitSuccessMessage() }
+				{ this.renderForm() }
 			</Dialog>
 		)
 	}
 
 	renderForm() {
 		var variables = this.getVariables()
+		if(Object.keys(this.props.options).length === 0) { return }
 		return (
 			<div>
 				<Tabs>
@@ -56,64 +56,64 @@ class App extends React.Component {
 						<SingleValuePicker
 							prompt='Select map type'
 							values={[ ...options.mapTypes ]}
-							selectedValue={this.state.mapType}
+							selectedValue={this.props.options.mapType}
 							valueKey='mapType'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 						<SingleValuePicker
 							prompt='Select color scale'
 							values={[ ...options.colorScales ]}
-							selectedValue={this.state.colorScale}
+							selectedValue={this.props.options.colorScale}
 							valueKey='colorScale'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 					</Tab>
 					<Tab label='Main Data Layer'>
 						<SingleValuePicker
 							prompt='Select main variable'
 							values={[ ...variables ]}
-							selectedValue={this.state.mainVariable}
+							selectedValue={this.props.options.mainVariable}
 							valueKey='mainVariable'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 						<SingleValuePicker
 							prompt='Select time variable'
 							values={[ ...variables ]}
-							selectedValue={this.state.timeVariable}
+							selectedValue={this.props.options.timeVariable}
 							valueKey='timeVariable'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 						<MultipleValuesPicker
 							prompt='Select filter variables'
 							values={[ ...variables ]}
-							selectedValues={this.state.filterVariables}
+							selectedValues={this.props.options.filterVariables}
 							valuesKey='filterVariables'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 					</Tab>
 					<Tab label='Sidebar'>
 						<MultipleValuesPicker
 							prompt='Select side bar variables'
 							values={[ ...variables ]}
-							selectedValues={this.state.sideBarVariables}
+							selectedValues={this.props.options.sideBarVariables}
 							valuesKey='sideBarVariables'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 					</Tab>
 					<Tab label='Chart Integration'>
 						<SingleValuePicker
 							prompt='Select integrated chart option'
 							values={[ ...options.integratedChartOptions ]}
-							selectedValue={this.state.integratedChartOption}
+							selectedValue={this.props.options.integratedChartOption}
 							valueKey='integratedChartOption'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 						<SingleValuePicker
 							prompt='Select integrated chart type'
 							values={[ ...options.integratedChartTypes ]}
-							selectedValue={this.state.integratedChartType}
+							selectedValue={this.props.options.integratedChartType}
 							valueKey='integratedChartType'
-							setParentStateByKey={this.setStateByKey}
+							setOptionByKey={this.setStateByKey}
 						/>
 					</Tab>
 				</Tabs>
@@ -122,20 +122,10 @@ class App extends React.Component {
 		)
 	}
 
-	renderSubmitSuccessMessage() {
-		return (
-			<div>
-				<h1>All set!</h1>
-				<p>Now, just ship the following JSON to the database, or, as an intermediate solution, copy and paste it to an input field within your CMS:</p>
-				<code>{ JSON.stringify(this.state, null, 4) }</code>
-			</div>
-		)
-	}
-
 	setStateByKey(key, value) {
 		var stateChange = {}
 		stateChange[key] = value
-		this.setState(stateChange)
+		this.props.dispatch({ type: 'SET_OPTIONS', payload: stateChange })
 	}
 
 	getItemNames() {
@@ -149,9 +139,9 @@ class App extends React.Component {
 	}
 
 	handleSubmit() {
-		this.props.endApp(this.state)
+		this.props.endApp(this.props.options)
 	}
 
 }
 
-export default connect(state => ({ data: state.data }))(App)
+export default connect(state => ({ data: state.data, options: state.options }))(App)
