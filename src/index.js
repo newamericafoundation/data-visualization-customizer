@@ -49,10 +49,6 @@ function addCustomizerOnUpload(options) {
 
 }
 
-$(() => {
-	addCustomizerOnUpload({
-		fileInputSelector: '#body-0-value-data_file', 
-		optionsInputSelector: '#body-1-value-variable_option',
-		appContainerSelector: '#data-visualization-customizer-app'
-	})
-})
+global.dataVisualizationCustomizer = {
+	addCustomizerOnUpload: addCustomizerOnUpload
+}

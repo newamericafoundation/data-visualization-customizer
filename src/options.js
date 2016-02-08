@@ -1,3 +1,5 @@
+import { getSelectedOption, getSelectedOptions } from './helpers/selection_helpers.js'
+
 var staticOptions = {
 	mapTypes: [ 'pindrop', 'heatmap', 'proportional-circle-map' ],
 	colorScales: [ 'default', 'chloropleth', 'positive-negative', 'positive-negative-oti' ],
@@ -37,27 +39,6 @@ var staticOptions = {
 		},
 		'no-display': null
 	}
-}
-
-export function getSelectedOption(allOptions, previousSelectedOption) {
-	if (previousSelectedOption == null) { 
-		return allOptions[0] 
-	}
-	if (allOptions.indexOf(previousSelectedOption) === -1) {
-		return allOptions[0]
-	}
-	return previousSelectedOption
-}
-
-export function getSelectedOptions(allOptions, previousSelectedOptions) {
-	if (previousSelectedOptions == null) {
-		return []
-	}
-	var newSelectedOptions = []
-	for (let option of previousSelectedOptions) {
-		if (allOptions.indexOf(option) > -1) { newSelectedOptions.push(option) }
-	}
-	return newSelectedOptions
 }
 
 export function updateOptions(previousOptions = {}, variables) {
