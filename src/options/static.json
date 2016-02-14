@@ -1,0 +1,75 @@
+{
+	"mapTypes": [
+    "pindrop",
+    "heatmap",
+    "proportional-circle-map"
+  ],
+	"colorScales": [
+    "default",
+    "chloropleth",
+    "positive-negative",
+    "positive-negative-oti"
+  ],
+	"mapZoomOptions": [
+    "zoomable",
+    "not zoomable: US",
+    "not zoomable: New England",
+    "not zoomable: Southeast",
+    "not zoomable: Midwest",
+    "not zoomable: Southwest"
+  ],
+	"chartTypes": [ "no chart", "donut", "bivariate donut", "line", "simple line", "scatterplot with color" ],
+	"chartXVariable": "",
+	"chartYVariable": "",
+	"chartZVariable": "",
+	"chartOptionsTree": {
+		"optionsKey": "display",
+		"options": [
+			{
+				"value": "display",
+				"optionsKey": "type",
+				"options": [
+					{
+						"value": "donut",
+						"optionsSource": {
+							"xVariable": "variables"
+						}
+					},
+					{
+						"value": "bivariate donut",
+						"optionsSource": {
+							"xVariable": "variables",
+							"yVariable": "variables"
+						}
+					},
+					{
+						"value": "line",
+						"optionsSource": {
+							"xVariable": "variables",
+							"yVariable": "variables"
+						}
+					},
+					{
+						"value": "simple line",
+						"optionsSource": {
+							"xVariable": "variables",
+							"yVariable": "variables"
+						}
+					},
+					{
+						"value": "scatterplot with color",
+						"optionsSource": {
+							"xVariable": "variables",
+							"yVariable": "variables",
+							"zVariable": "variables"
+						}
+					}
+				]
+			},
+			{
+				"value": "no-display",
+				"options": []
+			}
+		]
+	}
+}

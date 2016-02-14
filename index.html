@@ -18,18 +18,16 @@
 		$(function() {
 
 			function start() {
-				window.dataVisualizationCustomizer.addCustomizerOnUpload({
-					fileInputSelector: '[id$=-value-data_file]',
+				window.dataVisualizationCustomizer.addCustomizer({
+					fileContent: 'name,taste,price\np1,good,exp\np2,great,exp\np3,ok,chp',
+					// fileInputSelector: '[id$=-value-data_file]',
 					optionsInputSelector: '[id$=-value-variable_option]',
+					shouldDisableOptionsInput: false,
 					appContainerSelector: '#data-visualization-customizer-app'
 				});
 			}
 
-			function startAfterInterval(intervalInMs) {
-				setTimeout(start, intervalInMs);
-			}
-
-			startAfterInterval(250);
+			start();
 
 		});
 	</script>

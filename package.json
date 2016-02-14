@@ -21,6 +21,7 @@
     "babel-preset-stage-1": "^6.3.13",
     "compression-webpack-plugin": "^0.3.0",
     "css-loader": "^0.23.1",
+    "json-loader": "^0.5.4",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12"
   },

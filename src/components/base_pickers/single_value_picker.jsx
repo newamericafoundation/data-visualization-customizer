@@ -1,21 +1,23 @@
 import React from 'react'
-import { SelectField, MenuItem } from 'material-ui'
 
 import StatelessSelect from './../base_form_elements/stateless_select.jsx'
+import styles from './styles.json'
 
 export default function SingleValuePicker(props) {
 
-	function sendUpdateToParent(nextSelectedValue) {
-		props.setOptionByKey(props.valueKey, nextSelectedValue) 
+	var { optionKey, options, prompt, selectedOption } = props
+
+	function sendUpdateToParent(nextSelectedOption) {
+		props.setOptionByKey(props.optionKey, nextSelectedOption)
 	}
 
 	return (
-		<div style={{ margin: '30px 0' }}>
-			<h1>{ props.prompt }</h1>
+		<div style={ styles.container }>
+			<h1>{ prompt }</h1>
 			<StatelessSelect
-				values={props.values}
-				selectedValue={props.selectedValue}
-				sendUpdateToParent={sendUpdateToParent}
+				options={ options }
+				selectedOption={ selectedOption }
+				sendUpdateToParent={ sendUpdateToParent }
 			/>
 		</div>
 	)

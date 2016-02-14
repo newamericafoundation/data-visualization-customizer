@@ -4,25 +4,25 @@ import { SelectField, MenuItem } from 'material-ui'
 
 function StatelessSelect(props) {
 
-	var { values, selectedValue } = props
+	var { options, selectedOption } = props
 
 	function handleChange(event, index, value) {
-		props.sendUpdateToParent(value) 
+		props.sendUpdateToParent(value)
 	}
 
-	var list = values.map((value, i) => {
+	var list = options.map((option, i) => {
 		return (
-			<MenuItem 
-				key={i} 
-				value={value} 
-				primaryText={value} 
+			<MenuItem
+				key={i}
+				value={option}
+				primaryText={option}
 			/>
 		)
 	})
 
 	return (
 		<div>
-			<SelectField value={ selectedValue } onChange={handleChange} >
+			<SelectField value={ selectedOption } onChange={handleChange} >
 				{ list }
 			</SelectField>
 		</div>
@@ -31,7 +31,7 @@ function StatelessSelect(props) {
 }
 
 StatelessSelect.propTypes = {
-	values: PropTypes.array.isRequired
+	options: PropTypes.array.isRequired
 }
 
 export default StatelessSelect

@@ -2,7 +2,7 @@ import 'babel-polyfill'
 
 import assert from 'assert'
 
-import { getSelectedOption, getSelectedOptions, updateOptions } from './../selection_helpers.js'
+import { getSelectedOption, getSelectedOptions } from './../selection_helpers.js'
 
 describe('getSelectedOption', () => {
 

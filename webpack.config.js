@@ -18,7 +18,7 @@ module.exports = {
 
 	module: {
 		loaders: [
-		
+
 			{
 				test: /(\.js)|(\.jsx)$/,
 				loader: 'babel-loader',
@@ -26,6 +26,12 @@ module.exports = {
 				query: {
 					presets: [ 'es2015', 'react', 'stage-1' ]
 				}
+			},
+
+			{
+				test: /\.json$/,
+				loader: 'json-loader',
+				exclude: /(node_modules|bower_components)/
 			},
 
 			{

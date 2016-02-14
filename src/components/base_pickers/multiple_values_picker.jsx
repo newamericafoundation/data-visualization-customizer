@@ -2,21 +2,23 @@ import React from 'react'
 
 import StatelessCheckbox from './../base_form_elements/stateless_checkbox.jsx'
 
+import styles from './styles.json'
+
 export default function MultipleValuesPicker(props) {
 
-	var { values, selectedValues } = props
+	var { options, selectedOptions, optionKey, prompt } = props
 
-	function setParentState(nextValues) {
-		props.setOptionByKey(props.valuesKey, nextValues)
+	function setParentState(nextOptions) {
+		props.setOptionByKey(optionKey, nextOptions)
 	}
 
 	return (
-		<div style={{ margin: '30px 0' }}>
-			<h1>{ props.prompt }</h1>
+		<div style={ styles.container }>
+			<h1>{ prompt }</h1>
 			<StatelessCheckbox
-				values={values}
-				selectedValues={selectedValues}
-				sendUpdateToParent={setParentState}
+				options={ options }
+				selectedOptions={ selectedOptions }
+				sendUpdateToParent={ setParentState }
 			/>
 		</div>
 	)

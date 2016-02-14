@@ -15,17 +15,30 @@ import appReducer from './reducers/index.js'
 
 injectTapEventPlugin()
 
-function addCustomizerOnUpload(options) {
+function getFile(options) {
+	var $fileInput
+	var { fileInputSelector } = options
+	if (fileInputSelector == null) { return }
+	$fileInput = $(fileInputSelector)
+	return $fileInput[0].files[0]
+}
 
-	var { fileInputSelector, optionsInputSelector, appContainerSelector } = options
+function addCustomizer(options) {
 
-	var $fileInput = $(fileInputSelector)
-	var $optionsInput = $(optionsInputSelector)
-	var $appContainer = $(appContainerSelector)
+	var { shouldDisableOptionsInput, fileContent, optionsInputSelector, appContainerSelector } = options
+
+	var $optionsInput, $appContainer
+
+	$optionsInput = $(optionsInputSelector)
+	$appContainer = $(appContainerSelector)
+
+	function disableOptionsInput() {
+		$optionsInput.attr('disabled', shouldDisableOptionsInput)
+	}
 
 	function startApp(store) {
 		console.log('Hi, Mom!')
-		$optionsInput.attr('disabled', true)
+		disableOptionsInput()
 		render(<Provider store={store}><App endApp={endApp} /></Provider>, $appContainer[0])
 	}
 
@@ -34,10 +47,14 @@ function addCustomizerOnUpload(options) {
 		unmountComponentAtNode($appContainer[0])
 	}
 
-	$(fileInputSelector).on('change', (e) => {
-		var file = e.currentTarget.files[0]
-		readFileAsText(file, (text) => {
-			var json = csvToJson(text)
+	function getFileContent(next) {
+		if (fileContent != null) { return next(fileContent) }
+		readFileAsText(getFile(options), (text) => { return next(text) })
+	}
+
+	getFileContent((text) => {
+
+		csvToJson(text, (json) => {
 			var initialState = {
 				data: json,
 				options: {}
@@ -45,10 +62,18 @@ function addCustomizerOnUpload(options) {
 			var store = createStore(appReducer, initialState)
 			startApp(store)
 		})
+
 	})
 
 }
 
+function addCustomizerOnUpload(options) {
+	var { fileInputSelector } = options
+	var $fileInput = $(fileInputSelector)
+	$fileInput.on('change', addCustomizer.bind(this, options))
+}
+
 global.dataVisualizationCustomizer = {
+	addCustomizer: addCustomizer,
 	addCustomizerOnUpload: addCustomizerOnUpload
 }
