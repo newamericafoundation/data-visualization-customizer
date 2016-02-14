@@ -8,7 +8,6 @@ import VariableGroupInput from './variable_group_input.jsx'
 
 import SingleValuePicker from './base_pickers/single_value_picker.jsx'
 import MultipleValuesPicker from './base_pickers/multiple_values_picker.jsx'
-import ValueTreePicker from './base_pickers/value_tree_picker.jsx'
 
 import options, { setDefaultOptions } from './../options/index.js'
 
@@ -45,14 +44,14 @@ class App extends React.Component {
 					<Tab label='Map Type'>
 						<SingleValuePicker
 							prompt='Select map type'
-							options={[ ...options.mapTypes ]}
+							options={ options.mapTypes }
 							selectedOption={this.props.options.mapType}
 							optionKey='mapType'
 							setOptionByKey={this.setStateByKey}
 						/>
 						<SingleValuePicker
 							prompt='Select color scale'
-							options={[ ...options.colorScales ]}
+							options={ options.colorScales }
 							selectedOption={this.props.options.colorScale}
 							optionKey='colorScale'
 							setOptionByKey={this.setStateByKey}
@@ -61,21 +60,21 @@ class App extends React.Component {
 					<Tab label='Main Data Layer'>
 						<SingleValuePicker
 							prompt='Select main variable'
-							options={[ ...variables ]}
+							options={ variables }
 							selectedOption={this.props.options.mainVariable}
 							optionKey='mainVariable'
 							setOptionByKey={this.setStateByKey}
 						/>
 						<SingleValuePicker
 							prompt='Select time variable'
-							options={[ ...variables ]}
+							options={ variables }
 							selectedOption={this.props.options.timeVariable}
 							optionKey='timeVariable'
 							setOptionByKey={this.setStateByKey}
 						/>
 						<MultipleValuesPicker
 							prompt='Select filter variables'
-							options={[ ...variables ]}
+							options={ variables }
 							selectedOptions={this.props.options.filterVariables}
 							optionKey='filterVariables'
 							setOptionByKey={this.setStateByKey}
@@ -84,7 +83,7 @@ class App extends React.Component {
 					<Tab label='Sidebar'>
 						<MultipleValuesPicker
 							prompt='Select side bar variables'
-							options={[ ...variables ]}
+							options={ variables }
 							selectedOptions={this.props.options.sideBarVariables}
 							optionKey='sideBarVariables'
 							setOptionByKey={this.setStateByKey}
@@ -100,34 +99,37 @@ class App extends React.Component {
 						/>
 						<SingleValuePicker
 							prompt='Select chart X variable'
-							options={ [ ...variables ] }
+							options={ variables }
 							selectedOption={ this.props.options.chartXVariable }
 							optionKey='chartXVariable'
 							setOptionByKey={this.setStateByKey}
 						/>
 						<SingleValuePicker
 							prompt='Select chart Y variable'
-							options={ [ ...variables ] }
+							options={ variables }
 							selectedOption={ this.props.options.chartYVariable }
 							optionKey='chartYVariable'
 							setOptionByKey={this.setStateByKey}
 						/>
 						<SingleValuePicker
 							prompt='Select chart Z variable'
-							options={ [ ...variables ] }
+							options={ variables }
 							selectedOption={ this.props.options.chartZVariable }
 							optionKey='chartZVariable'
 							setOptionByKey={this.setStateByKey}
 						/>
 					</Tab>
 				</Tabs>
-				<RaisedButton label='Submit' primary={true} onClick={this.handleSubmit} />
+				<RaisedButton
+					label='Submit'
+					primary={ true }
+					onClick={ this.handleSubmit }
+				/>
 			</div>
 		)
 	}
 
 	setStateByKey(key, value) {
-		console.log(key, value)
 		var stateChange = {}
 		stateChange[key] = value
 		this.props.dispatch({ type: 'SET_OPTIONS', payload: stateChange })

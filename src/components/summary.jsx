@@ -7,7 +7,7 @@ function Summary(props) {
 		<div>
 			<h1>CSV uploaded successfully!</h1>
 			<p>{ `We have ${props.itemNames.length} items and ${props.variables.length} variables.` }</p>
-			<p>You can go through the tabs and customize how this data should be displayed.</p>
+			<p>Use the tabs to set up your project.</p>
 		</div>
 	)
 

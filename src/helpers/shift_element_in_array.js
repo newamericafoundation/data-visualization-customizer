@@ -1,15 +1,19 @@
 export default function shiftElementInArray(array, elementIndex, shift) {
-  if (shift === -1 && elementIndex < 1) { return [ ...array ] }
-  if (shift === +1 && elementIndex > array.length - 2) { return [ ...array ] }
+  var newArray = [ ...array ]
+  if (shift === -1 && elementIndex < 1) { return newArray }
+  if (shift === +1 && elementIndex > array.length - 2) { return newArray }
+
   if (shift === -1) {
-    let head = array.slice(0, elementIndex) || []
-    let tail = array.slice(elementIndex + 2) || []
-    return [ ...head, array[elementIndex + 1], array[elementIndex], ...tail ]
+    let a = newArray[elementIndex]
+    newArray[elementIndex] = newArray[elementIndex - 1]
+    newArray[elementIndex - 1] = a
+    return newArray
   } else if (shift === +1) {
-    let head = array.slice(0, elementIndex - 1) || []
-    let tail = array.slice(elementIndex + 1) || []
-    return [ ...head, array[elementIndex], array[elementIndex - 1], ...tail ]
+    let a = newArray[elementIndex]
+    newArray[elementIndex] = newArray[elementIndex + 1]
+    newArray[elementIndex + 1] = a
+    return newArray
   } else {
-    return [ ...array ]
+    return newArray
   }
 }

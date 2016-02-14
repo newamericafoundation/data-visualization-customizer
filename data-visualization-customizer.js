@@ -78,7 +78,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _index = __webpack_require__(473);
+	var _index = __webpack_require__(474);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -41594,21 +41594,15 @@
 	
 	var _single_value_picker2 = _interopRequireDefault(_single_value_picker);
 	
-	var _multiple_values_picker = __webpack_require__(466);
+	var _multiple_values_picker = __webpack_require__(467);
 	
 	var _multiple_values_picker2 = _interopRequireDefault(_multiple_values_picker);
 	
-	var _value_tree_picker = __webpack_require__(469);
-	
-	var _value_tree_picker2 = _interopRequireDefault(_value_tree_picker);
-	
-	var _index = __webpack_require__(470);
+	var _index = __webpack_require__(471);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -41666,14 +41660,14 @@
 							{ label: 'Map Type' },
 							_react2.default.createElement(_single_value_picker2.default, {
 								prompt: 'Select map type',
-								options: [].concat(_toConsumableArray(_index2.default.mapTypes)),
+								options: _index2.default.mapTypes,
 								selectedOption: this.props.options.mapType,
 								optionKey: 'mapType',
 								setOptionByKey: this.setStateByKey
 							}),
 							_react2.default.createElement(_single_value_picker2.default, {
 								prompt: 'Select color scale',
-								options: [].concat(_toConsumableArray(_index2.default.colorScales)),
+								options: _index2.default.colorScales,
 								selectedOption: this.props.options.colorScale,
 								optionKey: 'colorScale',
 								setOptionByKey: this.setStateByKey
@@ -41684,21 +41678,21 @@
 							{ label: 'Main Data Layer' },
 							_react2.default.createElement(_single_value_picker2.default, {
 								prompt: 'Select main variable',
-								options: [].concat(_toConsumableArray(variables)),
+								options: variables,
 								selectedOption: this.props.options.mainVariable,
 								optionKey: 'mainVariable',
 								setOptionByKey: this.setStateByKey
 							}),
 							_react2.default.createElement(_single_value_picker2.default, {
 								prompt: 'Select time variable',
-								options: [].concat(_toConsumableArray(variables)),
+								options: variables,
 								selectedOption: this.props.options.timeVariable,
 								optionKey: 'timeVariable',
 								setOptionByKey: this.setStateByKey
 							}),
 							_react2.default.createElement(_multiple_values_picker2.default, {
 								prompt: 'Select filter variables',
-								options: [].concat(_toConsumableArray(variables)),
+								options: variables,
 								selectedOptions: this.props.options.filterVariables,
 								optionKey: 'filterVariables',
 								setOptionByKey: this.setStateByKey
@@ -41709,7 +41703,7 @@
 							{ label: 'Sidebar' },
 							_react2.default.createElement(_multiple_values_picker2.default, {
 								prompt: 'Select side bar variables',
-								options: [].concat(_toConsumableArray(variables)),
+								options: variables,
 								selectedOptions: this.props.options.sideBarVariables,
 								optionKey: 'sideBarVariables',
 								setOptionByKey: this.setStateByKey
@@ -41727,34 +41721,37 @@
 							}),
 							_react2.default.createElement(_single_value_picker2.default, {
 								prompt: 'Select chart X variable',
-								options: [].concat(_toConsumableArray(variables)),
+								options: variables,
 								selectedOption: this.props.options.chartXVariable,
 								optionKey: 'chartXVariable',
 								setOptionByKey: this.setStateByKey
 							}),
 							_react2.default.createElement(_single_value_picker2.default, {
 								prompt: 'Select chart Y variable',
-								options: [].concat(_toConsumableArray(variables)),
+								options: variables,
 								selectedOption: this.props.options.chartYVariable,
 								optionKey: 'chartYVariable',
 								setOptionByKey: this.setStateByKey
 							}),
 							_react2.default.createElement(_single_value_picker2.default, {
 								prompt: 'Select chart Z variable',
-								options: [].concat(_toConsumableArray(variables)),
+								options: variables,
 								selectedOption: this.props.options.chartZVariable,
 								optionKey: 'chartZVariable',
 								setOptionByKey: this.setStateByKey
 							})
 						)
 					),
-					_react2.default.createElement(_materialUi.RaisedButton, { label: 'Submit', primary: true, onClick: this.handleSubmit })
+					_react2.default.createElement(_materialUi.RaisedButton, {
+						label: 'Submit',
+						primary: true,
+						onClick: this.handleSubmit
+					})
 				);
 			}
 		}, {
 			key: 'setStateByKey',
 			value: function setStateByKey(key, value) {
-				console.log(key, value);
 				var stateChange = {};
 				stateChange[key] = value;
 				this.props.dispatch({ type: 'SET_OPTIONS', payload: stateChange });
@@ -75188,7 +75185,7 @@
 			_react2.default.createElement(
 				'p',
 				null,
-				'You can go through the tabs and customize how this data should be displayed.'
+				'Use the tabs to set up your project.'
 			)
 		);
 	}
@@ -75300,7 +75297,7 @@
 	
 	var _stateless_select2 = _interopRequireDefault(_stateless_select);
 	
-	var _styles = __webpack_require__(476);
+	var _styles = __webpack_require__(466);
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
@@ -75385,6 +75382,20 @@
 
 /***/ },
 /* 466 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	module.exports = {
+		"container": {
+			"margin": "50px 0",
+			"padding": "20px",
+			"background-color": "rgba(0, 0, 0, 0.05)"
+		}
+	};
+
+/***/ },
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75398,11 +75409,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _stateless_checkbox = __webpack_require__(467);
+	var _stateless_checkbox = __webpack_require__(468);
 	
 	var _stateless_checkbox2 = _interopRequireDefault(_stateless_checkbox);
 	
-	var _styles = __webpack_require__(476);
+	var _styles = __webpack_require__(466);
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
@@ -75435,7 +75446,7 @@
 	}
 
 /***/ },
-/* 467 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75450,7 +75461,7 @@
 	
 	var _materialUi = __webpack_require__(251);
 	
-	var _shift_element_in_array = __webpack_require__(468);
+	var _shift_element_in_array = __webpack_require__(469);
 	
 	var _shift_element_in_array2 = _interopRequireDefault(_shift_element_in_array);
 	
@@ -75477,15 +75488,11 @@
 			} else {
 				nextSelectedOptions = [].concat(_toConsumableArray(selectedOptions), [option]);
 			}
-			console.log(nextSelectedOptions);
 			props.sendUpdateToParent(nextSelectedOptions);
 		}
 	
 		function handleReorder(option, i, delta) {
-	
 			var nextSelectedOptions = (0, _shift_element_in_array2.default)(selectedOptions, i, delta);
-			console.log(selectedOptions, i, delta);
-			console.log(nextSelectedOptions);
 			props.sendUpdateToParent(nextSelectedOptions);
 		}
 	
@@ -75499,28 +75506,50 @@
 		});
 	
 		var orderList = selectedOptions.map(function (option, i) {
+			var arrowStyle = { 'display': 'inline-block', 'cursor': 'pointer', 'margin': '0 5px', color: 'teal' };
 			var pStyle = { 'display': 'inline-block' };
-			var divStyle = { 'display': 'inline-block', 'margin': '0 10px' };
+			var divStyle = { 'display': 'inline-block', 'margin': '0 15px' };
+	
+			var leftArrow = i === 0 ? null : _react2.default.createElement(
+				'p',
+				{ style: arrowStyle, onClick: handleReorder.bind(_this, option, i, -1) },
+				'<--'
+			);
+			var rightArrow = i === selectedOptions.length - 1 ? null : _react2.default.createElement(
+				'p',
+				{ style: arrowStyle, onClick: handleReorder.bind(_this, option, i, +1) },
+				'-->'
+			);
 			return _react2.default.createElement(
 				'div',
 				{ style: divStyle, key: i },
-				_react2.default.createElement(
-					'p',
-					{ style: pStyle, onClick: handleReorder.bind(_this, option, i, -1) },
-					'<--'
-				),
+				leftArrow,
 				_react2.default.createElement(
 					'p',
 					{ style: pStyle },
 					option
 				),
-				_react2.default.createElement(
-					'p',
-					{ style: pStyle, onClick: handleReorder.bind(_this, option, i, +1) },
-					'-->'
-				)
+				rightArrow
 			);
 		});
+	
+		var h2Style = { 'marginTop': '35px' };
+	
+		var orderBox = selectedOptions && selectedOptions.length && selectedOptions.length > 1 ? _react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(
+				'h2',
+				{ style: h2Style },
+				'Specify order'
+			),
+			_react2.default.createElement(
+				'p',
+				null,
+				'Click on the left-right arrows to re-order your selection.'
+			),
+			orderList
+		) : null;
 	
 		return _react2.default.createElement(
 			'div',
@@ -75530,21 +75559,12 @@
 				null,
 				_react2.default.createElement(
 					'h2',
-					null,
+					{ style: h2Style },
 					'Select variables'
 				),
 				list
 			),
-			_react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					'h2',
-					null,
-					'Specify order'
-				),
-				orderList
-			)
+			orderBox
 		);
 	}
 	
@@ -75556,7 +75576,7 @@
 	exports.default = StatelessCheckbox;
 
 /***/ },
-/* 468 */
+/* 469 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75569,83 +75589,32 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
 	function shiftElementInArray(array, elementIndex, shift) {
+	  var newArray = [].concat(_toConsumableArray(array));
 	  if (shift === -1 && elementIndex < 1) {
-	    return [].concat(_toConsumableArray(array));
+	    return newArray;
 	  }
 	  if (shift === +1 && elementIndex > array.length - 2) {
-	    return [].concat(_toConsumableArray(array));
+	    return newArray;
 	  }
+	
 	  if (shift === -1) {
-	    var head = array.slice(0, elementIndex) || [];
-	    var tail = array.slice(elementIndex + 2) || [];
-	    return [].concat(_toConsumableArray(head), [array[elementIndex + 1], array[elementIndex]], _toConsumableArray(tail));
+	    var a = newArray[elementIndex];
+	    newArray[elementIndex] = newArray[elementIndex - 1];
+	    newArray[elementIndex - 1] = a;
+	    return newArray;
 	  } else if (shift === +1) {
-	    var head = array.slice(0, elementIndex - 1) || [];
-	    var tail = array.slice(elementIndex + 1) || [];
-	    return [].concat(_toConsumableArray(head), [array[elementIndex], array[elementIndex - 1]], _toConsumableArray(tail));
+	    var a = newArray[elementIndex];
+	    newArray[elementIndex] = newArray[elementIndex + 1];
+	    newArray[elementIndex + 1] = a;
+	    return newArray;
 	  } else {
-	    return [].concat(_toConsumableArray(array));
+	    return newArray;
 	  }
 	}
 
 /***/ },
-/* 469 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = ValueTreePicker;
-	
-	var _react = __webpack_require__(5);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _stateless_select = __webpack_require__(465);
-	
-	var _stateless_select2 = _interopRequireDefault(_stateless_select);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function ValueTreePicker(props) {
-	  var optionsTree = props.optionsTree;
-	  var selectedOptions = props.selectedOptions;
-	  var optionsKey = props.optionsKey;
-	
-	  function handleFirstSelectChange(value) {
-	    console.log(value);
-	    var obj = {};
-	    obj[optionsTree.optionsKey] = value;
-	    props.setOptionByKey(optionsKey, obj);
-	  }
-	
-	  var firstValues = optionsTree.options.map(function (option) {
-	    return option.value;
-	  });
-	  var firstSelectedValue = selectedOptions[optionsTree.optionsKey];
-	
-	  var firstSelect = _react2.default.createElement(_stateless_select2.default, {
-	    options: firstValues,
-	    selectedOption: firstSelectedValue,
-	    sendUpdateToParent: handleFirstSelectChange
-	  });
-	
-	  return _react2.default.createElement(
-	    'div',
-	    { style: { margin: '30px 0' } },
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      props.prompt
-	    ),
-	    firstSelect
-	  );
-	}
-
-/***/ },
-/* 470 */
+/* 470 */,
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75655,9 +75624,9 @@
 	});
 	exports.setDefaultOptions = setDefaultOptions;
 	
-	var _selection_helpers = __webpack_require__(471);
+	var _selection_helpers = __webpack_require__(472);
 	
-	var _static = __webpack_require__(472);
+	var _static = __webpack_require__(473);
 	
 	var _static2 = _interopRequireDefault(_static);
 	
@@ -75703,7 +75672,7 @@
 	exports.default = _static2.default;
 
 /***/ },
-/* 471 */
+/* 472 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75759,64 +75728,23 @@
 	}
 
 /***/ },
-/* 472 */
+/* 473 */
 /***/ function(module, exports) {
 
 	"use strict";
 	
 	module.exports = {
-		"mapTypes": ["pindrop", "heatmap", "proportional-circle-map"],
+		"mapTypes": ["pin-drop-map", "heat-map", "proportional-circle-map"],
 		"colorScales": ["default", "chloropleth", "positive-negative", "positive-negative-oti"],
 		"mapZoomOptions": ["zoomable", "not zoomable: US", "not zoomable: New England", "not zoomable: Southeast", "not zoomable: Midwest", "not zoomable: Southwest"],
 		"chartTypes": ["no chart", "donut", "bivariate donut", "line", "simple line", "scatterplot with color"],
 		"chartXVariable": "",
 		"chartYVariable": "",
-		"chartZVariable": "",
-		"chartOptionsTree": {
-			"optionsKey": "display",
-			"options": [{
-				"value": "display",
-				"optionsKey": "type",
-				"options": [{
-					"value": "donut",
-					"optionsSource": {
-						"xVariable": "variables"
-					}
-				}, {
-					"value": "bivariate donut",
-					"optionsSource": {
-						"xVariable": "variables",
-						"yVariable": "variables"
-					}
-				}, {
-					"value": "line",
-					"optionsSource": {
-						"xVariable": "variables",
-						"yVariable": "variables"
-					}
-				}, {
-					"value": "simple line",
-					"optionsSource": {
-						"xVariable": "variables",
-						"yVariable": "variables"
-					}
-				}, {
-					"value": "scatterplot with color",
-					"optionsSource": {
-						"xVariable": "variables",
-						"yVariable": "variables",
-						"zVariable": "variables"
-					}
-				}]
-			}, {
-				"value": "no-display",
-				"options": []
-			}]
-		}
+		"chartZVariable": ""
 	};
 
 /***/ },
-/* 473 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75827,11 +75755,11 @@
 	
 	var _redux = __webpack_require__(163);
 	
-	var _data_reducer = __webpack_require__(474);
+	var _data_reducer = __webpack_require__(475);
 	
 	var _data_reducer2 = _interopRequireDefault(_data_reducer);
 	
-	var _options_reducer = __webpack_require__(475);
+	var _options_reducer = __webpack_require__(476);
 	
 	var _options_reducer2 = _interopRequireDefault(_options_reducer);
 	
@@ -75843,7 +75771,7 @@
 	});
 
 /***/ },
-/* 474 */
+/* 475 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75860,7 +75788,7 @@
 	}
 
 /***/ },
-/* 475 */
+/* 476 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -75882,18 +75810,6 @@
 				return state;
 		}
 	}
-
-/***/ },
-/* 476 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	module.exports = {
-		"container": {
-			"margin": "50px 0"
-		}
-	};
 
 /***/ }
 /******/ ]);
