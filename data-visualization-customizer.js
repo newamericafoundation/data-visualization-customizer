@@ -78,7 +78,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _index = __webpack_require__(474);
+	var _index = __webpack_require__(471);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -103,13 +103,22 @@
 		var optionsInputSelector = options.optionsInputSelector;
 		var appContainerSelector = options.appContainerSelector;
 	
-		var $optionsInput, $appContainer;
+		var $optionsInput = (0, _jquery2.default)(optionsInputSelector);
+		var $appContainer = (0, _jquery2.default)(appContainerSelector);
 	
-		$optionsInput = (0, _jquery2.default)(optionsInputSelector);
-		$appContainer = (0, _jquery2.default)(appContainerSelector);
+		start();
 	
-		function disableOptionsInput() {
-			$optionsInput.attr('disabled', shouldDisableOptionsInput);
+		function start() {
+			getFileContent(function (text) {
+				(0, _csv_to_json2.default)(text, function (json) {
+					var initialState = {
+						data: json,
+						options: {}
+					};
+					var store = (0, _redux.createStore)(_index2.default, initialState);
+					startApp(store);
+				});
+			});
 		}
 	
 		function startApp(store) {
@@ -127,6 +136,10 @@
 			(0, _reactDom.unmountComponentAtNode)($appContainer[0]);
 		}
 	
+		function disableOptionsInput() {
+			$optionsInput.attr('disabled', shouldDisableOptionsInput);
+		}
+	
 		function getFileContent(next) {
 			if (fileContent != null) {
 				return next(fileContent);
@@ -135,18 +148,6 @@
 				return next(text);
 			});
 		}
-	
-		getFileContent(function (text) {
-	
-			(0, _csv_to_json2.default)(text, function (json) {
-				var initialState = {
-					data: json,
-					options: {}
-				};
-				var store = (0, _redux.createStore)(_index2.default, initialState);
-				startApp(store);
-			});
-		});
 	}
 	
 	function addCustomizerOnUpload(options) {
@@ -41586,19 +41587,15 @@
 	
 	var _summary2 = _interopRequireDefault(_summary);
 	
-	var _variable_group_input = __webpack_require__(462);
-	
-	var _variable_group_input2 = _interopRequireDefault(_variable_group_input);
-	
-	var _single_value_picker = __webpack_require__(464);
+	var _single_value_picker = __webpack_require__(462);
 	
 	var _single_value_picker2 = _interopRequireDefault(_single_value_picker);
 	
-	var _multiple_values_picker = __webpack_require__(467);
+	var _multiple_values_picker = __webpack_require__(465);
 	
 	var _multiple_values_picker2 = _interopRequireDefault(_multiple_values_picker);
 	
-	var _index = __webpack_require__(471);
+	var _index = __webpack_require__(468);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -75206,98 +75203,17 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.default = VariableGroupInput;
-	
-	var _react = __webpack_require__(5);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _stateless_list_creator = __webpack_require__(463);
-	
-	var _stateless_list_creator2 = _interopRequireDefault(_stateless_list_creator);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function VariableGroupInput(props) {
-	
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(
-				'h1',
-				null,
-				'Specify variable groups'
-			),
-			_react2.default.createElement(
-				'h2',
-				null,
-				'This section will have a drag-and-drop interface to add variables to each group'
-			),
-			_react2.default.createElement(_stateless_list_creator2.default, { values: props.variableGroups })
-		);
-	}
-
-/***/ },
-/* 463 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = StatelessListCreator;
-	
-	var _react = __webpack_require__(5);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _materialUi = __webpack_require__(251);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function StatelessListCreator(props) {
-	
-		var list = props.values.map(function (value, i) {
-			return _react2.default.createElement(
-				'p',
-				{ key: i },
-				value
-			);
-		});
-	
-		function sendUpdateToParent() {
-			props.sendUpdateToParent('1');
-		}
-	
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(_materialUi.TextField, null),
-			list
-		);
-	}
-
-/***/ },
-/* 464 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
 	exports.default = SingleValuePicker;
 	
 	var _react = __webpack_require__(5);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _stateless_select = __webpack_require__(465);
+	var _stateless_select = __webpack_require__(463);
 	
 	var _stateless_select2 = _interopRequireDefault(_stateless_select);
 	
-	var _styles = __webpack_require__(466);
+	var _styles = __webpack_require__(464);
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
@@ -75330,7 +75246,7 @@
 	}
 
 /***/ },
-/* 465 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75381,7 +75297,7 @@
 	exports.default = StatelessSelect;
 
 /***/ },
-/* 466 */
+/* 464 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75395,7 +75311,7 @@
 	};
 
 /***/ },
-/* 467 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75409,11 +75325,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _stateless_checkbox = __webpack_require__(468);
+	var _stateless_checkbox = __webpack_require__(466);
 	
 	var _stateless_checkbox2 = _interopRequireDefault(_stateless_checkbox);
 	
-	var _styles = __webpack_require__(466);
+	var _styles = __webpack_require__(464);
 	
 	var _styles2 = _interopRequireDefault(_styles);
 	
@@ -75446,7 +75362,7 @@
 	}
 
 /***/ },
-/* 468 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75461,7 +75377,7 @@
 	
 	var _materialUi = __webpack_require__(251);
 	
-	var _shift_element_in_array = __webpack_require__(469);
+	var _shift_element_in_array = __webpack_require__(467);
 	
 	var _shift_element_in_array2 = _interopRequireDefault(_shift_element_in_array);
 	
@@ -75576,7 +75492,7 @@
 	exports.default = StatelessCheckbox;
 
 /***/ },
-/* 469 */
+/* 467 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75613,8 +75529,7 @@
 	}
 
 /***/ },
-/* 470 */,
-/* 471 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75624,9 +75539,9 @@
 	});
 	exports.setDefaultOptions = setDefaultOptions;
 	
-	var _selection_helpers = __webpack_require__(472);
+	var _selection_helpers = __webpack_require__(469);
 	
-	var _static = __webpack_require__(473);
+	var _static = __webpack_require__(470);
 	
 	var _static2 = _interopRequireDefault(_static);
 	
@@ -75672,7 +75587,7 @@
 	exports.default = _static2.default;
 
 /***/ },
-/* 472 */
+/* 469 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75728,7 +75643,7 @@
 	}
 
 /***/ },
-/* 473 */
+/* 470 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75744,7 +75659,7 @@
 	};
 
 /***/ },
-/* 474 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75755,11 +75670,11 @@
 	
 	var _redux = __webpack_require__(163);
 	
-	var _data_reducer = __webpack_require__(475);
+	var _data_reducer = __webpack_require__(472);
 	
 	var _data_reducer2 = _interopRequireDefault(_data_reducer);
 	
-	var _options_reducer = __webpack_require__(476);
+	var _options_reducer = __webpack_require__(473);
 	
 	var _options_reducer2 = _interopRequireDefault(_options_reducer);
 	
@@ -75771,7 +75686,7 @@
 	});
 
 /***/ },
-/* 475 */
+/* 472 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75788,7 +75703,7 @@
 	}
 
 /***/ },
-/* 476 */
+/* 473 */
 /***/ function(module, exports) {
 
 	'use strict';

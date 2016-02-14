@@ -27,19 +27,32 @@ function addCustomizer(options) {
 
 	var { shouldDisableOptionsInput, fileContent, optionsInputSelector, appContainerSelector } = options
 
-	var $optionsInput, $appContainer
+	var $optionsInput = $(optionsInputSelector)
+	var $appContainer = $(appContainerSelector)
 
-	$optionsInput = $(optionsInputSelector)
-	$appContainer = $(appContainerSelector)
+	start()
 
-	function disableOptionsInput() {
-		$optionsInput.attr('disabled', shouldDisableOptionsInput)
+	function start() {
+		getFileContent((text) => {
+			csvToJson(text, (json) => {
+				var initialState = {
+					data: json,
+					options: {}
+				}
+				var store = createStore(appReducer, initialState)
+				startApp(store)
+			})
+		})
 	}
 
 	function startApp(store) {
 		console.log('Hi, Mom!')
 		disableOptionsInput()
-		render(<Provider store={store}><App endApp={endApp} /></Provider>, $appContainer[0])
+		render(
+			<Provider store={store}>
+				<App endApp={endApp} />
+			</Provider>
+		, $appContainer[0])
 	}
 
 	function endApp(options) {
@@ -47,23 +60,14 @@ function addCustomizer(options) {
 		unmountComponentAtNode($appContainer[0])
 	}
 
+	function disableOptionsInput() {
+		$optionsInput.attr('disabled', shouldDisableOptionsInput)
+	}
+
 	function getFileContent(next) {
 		if (fileContent != null) { return next(fileContent) }
 		readFileAsText(getFile(options), (text) => { return next(text) })
 	}
-
-	getFileContent((text) => {
-
-		csvToJson(text, (json) => {
-			var initialState = {
-				data: json,
-				options: {}
-			}
-			var store = createStore(appReducer, initialState)
-			startApp(store)
-		})
-
-	})
 
 }
 

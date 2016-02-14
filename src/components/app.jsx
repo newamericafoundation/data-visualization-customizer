@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { Dialog, RaisedButton, Tabs, Tab } from 'material-ui'
 
 import Summary from './summary.jsx'
-
-import VariableGroupInput from './variable_group_input.jsx'
-
 import SingleValuePicker from './base_pickers/single_value_picker.jsx'
 import MultipleValuesPicker from './base_pickers/multiple_values_picker.jsx'
 
